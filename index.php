@@ -37,9 +37,9 @@ function getInfos($id){
         $item['title'] = $row->find('td', 0)->plaintext;
         
         if($row->find('td', 1)->plaintext==""){
-            switch ($item['title']) {
+            switch (trim($item['title'])) {
                 case 'Lgootipo:':
-                    $item['value'] = $row->find('td img',0)->src;
+                    $item['value'] = $row->find('img',0)->src;
                     break;
 
                 default:
@@ -62,7 +62,7 @@ function getInfos($id){
         if(array_key_exists($campo, $tableColumns)){
             $colunas .= $tableColumns[$campo].',';
 
-            if($tableColumns[$campo]!='telefone'){
+            if($tableColumns[$campo]!='telefone' && $tableColumns[$campo]!='whatsapp'){
                 $valores .= '"'.trim($l['value']).'",';
             }else{
                 $valor = preg_replace("/[^0-9]/", "",$l['value']);
@@ -88,7 +88,7 @@ function getInfos($id){
     $sqlOng = 'SELECT id FROM ongs WHERE id='.$id;
     $resOng = mysqli_query($link, $sqlOng);
     if(mysqli_num_rows($resOng)==0){
-        $ins = 'INSERT INTO ongs (id,nome, '.$colunas.') VALUES ('.$id.',"'.$name.'", '.$valores.');';
+        $ins = 'INSERT INTO ongs (id,nome,dataHora, '.$colunas.') VALUES ('.$id.',"'.$name.'",NOW(), '.$valores.');';
         // echo $ins;
         mysqli_query($link, $ins);
         $idOng = mysqli_insert_id($link);
@@ -184,7 +184,7 @@ function getInfos($id){
 
 
 $start = microtime(true);
-for ($i=202; $i < 1000; $i++) { 
+for ($i=2061; $i < 10000; $i++) { 
     echo "Getting:".$i.NW;
     getInfos($i);
     sleep(1);
