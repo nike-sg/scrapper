@@ -14,7 +14,7 @@ require_once "class_scrapper.php";
 
 
 $start = microtime(true);
-for ($i=7222; $i < 10000; $i++) { 
+for ($i=7227; $i < 10000; $i++) { 
     
     $scrapper = new Scrapper;
 

@@ -1,6 +1,8 @@
 <?php 
 # TODO Ex.: 2115 CREDIBILIDADE
-
+// ini_set('display_errors', '1');
+// ini_set('display_startup_errors', '1');
+// error_reporting(E_ALL);
 # load class
 require_once "simple_html_dom.php";
 
