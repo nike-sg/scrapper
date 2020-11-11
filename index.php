@@ -14,7 +14,12 @@ require_once "class_scrapper.php";
 
 
 $start = microtime(true);
-for ($i=7227; $i < 10000; $i++) { 
+
+$sql = 'SELECT id FROM `ongs` ORDER BY id DESC LIMIT 1;';
+$res = mysqli_query($link, $sql);
+$row = mysqli_fetch_array($res);
+
+for ($i=$row['id']; $i < 20000; $i++) { 
     
     $scrapper = new Scrapper;
 

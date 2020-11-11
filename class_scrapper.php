@@ -45,10 +45,11 @@ class Scrapper{
     }
 
     public function getHtml(){
+        $this->resetContResponse();
         $url = 'http://www.ongsbrasil.com.br/default.asp?Pag=2&Destino=InstituicoesTemplate&CodigoInstituicao='.$this->getId();
         $html = file_get_html($url);
-        if($html==""){
-            if($this->getContResponse()<10){
+        while($html==""){
+            if($this->getContResponse()<5){
                 echo "Waiting for a response".NW;
                 sleep(10);
                 echo "Trying again for a response [".$this->getContResponse()."]".NW;
@@ -57,7 +58,8 @@ class Scrapper{
             }else{
                 echo "No Response, try again later".NW;
                 echo "Exiting".NW;
-                exit;
+                $this->getAll($this->getId());
+                // exit;
             }
         }
         return $html;
