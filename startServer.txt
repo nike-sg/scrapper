@@ -1,4 +1,0 @@
-php -S localhost:8000
-
-root
-root1234
