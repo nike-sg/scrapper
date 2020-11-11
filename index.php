@@ -19,7 +19,7 @@ $sql = 'SELECT id FROM `ongs` ORDER BY id DESC LIMIT 1;';
 $res = mysqli_query($link, $sql);
 $row = mysqli_fetch_array($res);
 
-for ($i=$row['id']; $i < 20000; $i++) { 
+for ($i=$row['id']; $i < 30000; $i++) { 
     
     $scrapper = new Scrapper;
 

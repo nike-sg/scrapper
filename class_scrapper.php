@@ -45,7 +45,6 @@ class Scrapper{
     }
 
     public function getHtml(){
-        $this->resetContResponse();
         $url = 'http://www.ongsbrasil.com.br/default.asp?Pag=2&Destino=InstituicoesTemplate&CodigoInstituicao='.$this->getId();
         $html = file_get_html($url);
         while($html==""){
