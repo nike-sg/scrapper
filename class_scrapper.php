@@ -47,18 +47,18 @@ class Scrapper{
     public function getHtml(){
         $url = 'http://www.ongsbrasil.com.br/default.asp?Pag=2&Destino=InstituicoesTemplate&CodigoInstituicao='.$this->getId();
         $html = file_get_html($url);
-        while($html==""){
+        while($html=="" || is_null($html)){
             if($this->getContResponse()<5){
                 echo "Waiting for a response".NW;
                 sleep(10);
                 echo "Trying again for a response [".$this->getContResponse()."]".NW;
                 $this->addContResponse();
-                $this->getHtml($this->getId());
+                $html = file_get_html($url);
             }else{
                 echo "No Response, try again later".NW;
                 echo "Exiting".NW;
-                $this->getAll($this->getId());
-                // exit;
+                // $this->getAll($this->getId());
+                exit;
             }
         }
         return $html;
